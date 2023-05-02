@@ -26,7 +26,7 @@ class InvoiceCheckoutOptions
     /** @var int */
     protected $monitoringMinutes;
 
-    /** @var int */
+    /** @var float */
     protected $paymentTolerance;
 
     /** @var string */
@@ -38,6 +38,9 @@ class InvoiceCheckoutOptions
     /** @var string */
     protected $defaultLanguage;
 
+    /** @var bool */
+    protected $requiresRefundEmail;
+
     public static function create(
         ?string $speedPolicy,
         ?array $paymentMethods,
@@ -46,8 +49,8 @@ class InvoiceCheckoutOptions
         ?float $paymentTolerance,
         ?string $redirectURL,
         ?bool $redirectAutomatically,
-        ?bool $requiresRefundEmail,
-        ?string $defaultLanguage
+        ?string $defaultLanguage,
+        ?bool $requiresRefundEmail = false,
     ) {
         $options = new InvoiceCheckoutOptions();
         $options->setSpeedPolicy($speedPolicy);
@@ -59,6 +62,7 @@ class InvoiceCheckoutOptions
         $options->redirectAutomatically = $redirectAutomatically;
         $options->requiresRefundEmail = $requiresRefundEmail;
         $options->defaultLanguage = $defaultLanguage;
+        $options->requiresRefundEmail = $requiresRefundEmail;
         return $options;
     }
 
